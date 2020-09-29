@@ -1,0 +1,13 @@
+pythonスプリクト内でコマンドを実行するとき、"〜"などの環境変数を使うとno directory と言われてしまう。
+本来ならALSADEV="plughw:0,0"を先頭につけなければならないが、ALSADEVがわからないと言われてしまうので、
+sudo nano /etc/profile を実行して、export ALSADEV="plughw:0,0" を追記して再起動すればいい。
+
+juliusの追加オプションは -nostrip -charconv UTF-8 eucjp
+
+自作辞書を作るとき、.phone作成は
+iconv greeting.yomi | /home/pi/src/julius-4.4.2.1/gramtools/yomi2voca/yomi2voca.pl > greeting.phone
+
+.dfa .dict .termの作成は
+まず　~/src/julius-4.4.2.1/gramtools/mkdfa の中に コピーしたdfa_minimize, mkfaを貼り付ける。
+次に　~/src/julius-4.4.2.1/julius/julius -C ~/src/julius-4.4.2.1/dictation-kit-v4.4/am-gmm.jconf -nostrip -gram ./Greeting/greeting -input mic
+を実行することで得られる。
