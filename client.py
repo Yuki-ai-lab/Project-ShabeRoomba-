@@ -1,5 +1,4 @@
-# coding: utf-8
-# python 2.7.13
+# python 3.5.3
 import socket
 import string
 import sys,codecs
@@ -42,8 +41,8 @@ sock.connect((host, port))
 try:
     while True:
         data = ""
-        while (string.find(data, "\n.") == -1 ):
-            data = data + sock.recv(buffer)
+        while (data.find("\n.") == -1 ):
+            data = data + sock.recv(buffer).decode('eucjp')
 
         strTemp = ""
         for line in data.split('\n'):
@@ -51,17 +50,15 @@ try:
             if index != -1:
                 line = line[index+6:line.find('"',index+6)]
                 strTemp = strTemp + line
-                
-            #str文字列(utf-8)→unicode文字列→str文字列(eucjp)
-        if "こんばんは".decode('utf-8').encode('eucjp') in strTemp:
-            #str文字列(utf-8)
-            say_comment("こんばんは。夕食は食べましたか？")
+
+        if "こんばんは" in strTemp:
+            say_comment("こんばんは。夕食は食べましたか？".encode())
         
-        elif "こんにちは".decode('utf-8').encode('eucjp') in strTemp:
-            say_comment("こんにちは。体調はいかがですか？")
+        elif "こんにちは" in strTemp:
+            say_comment("こんにちは。体調はいかがですか？".encode())
             
-        elif "さよなら".decode('utf-8').encode('eucjp') in strTemp:
-            say_comment("また会える日を楽しみにしております。")
+        elif "さよなら" in strTemp:
+            say_comment("また会える日を楽しみにしております。".encode())
                 
 except KeyboardInterrupt:
     print("finish")
