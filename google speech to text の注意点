@@ -1,0 +1,7 @@
+https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries?hl=ja
+
+1.cloud console プロジェクトの設定
+2.環境変数の設定
+3.Cloud SDK の設定
+4.クライアントライブラリをインストール
+※python3で動かすためにクライアントライブラリインストールはpip3で行うこと！
